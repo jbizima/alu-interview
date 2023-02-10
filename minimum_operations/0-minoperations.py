@@ -1,13 +1,6 @@
 #!/usr/bin/python3
 
-"""
-Solution for the following problem:
-
-In a text file, there is a single character H. Your text editor can execute only two
-operations in this file: Copy All and Paste. Given a number n, write a method that
-calculates the fewest number of operations needed to result in exactly n H characters
-in the file.
-"""
+""" Minimum Operations """
 
 
 def minOperations(n):
@@ -16,17 +9,22 @@ def minOperations(n):
     characters in the file.
 
     Args:
-        n: an integer representing the number of H characters desired in the file.
+        n (int): the number of H characters desired in the file.
 
     Returns:
-        An integer representing the fewest number of operations needed, or 0 if n
-        is not possible to achieve.
+        int: the fewest number of operations needed, or 0 if n is not possible
+        to achieve.
+
     """
-    if n <= 0:
+    if not isinstance(n, int):
         return 0
-    operations = 0
-    for i in range(2, n + 1):
-        while n % i == 0:
-            operations += i
-            n /= i
-    return operations if n == 1 else 0
+
+    op = 0
+    i = 2
+    while (i <= n):
+        if not (n % i):
+            n = int(n / i)
+            op += i
+            i = 1
+        i += 1
+    return op
